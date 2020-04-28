@@ -1,6 +1,8 @@
 # metlink-status
 CLI tool for checking Metlink Wellington service updates.
 
+![Example Output Screenshot](docs/example_output.png "Example Output")
+
 ## Installation
 ```shell script
 python setup.py install
@@ -20,6 +22,11 @@ optional arguments:
 ```
 
 ## Examples
+
+- To show all service updates:
+    ```shell script
+    metlink-status
+    ```
 
 - To show any service updates for the number 2 bus:
     ```shell script
