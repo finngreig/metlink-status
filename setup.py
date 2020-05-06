@@ -13,15 +13,25 @@ setup(
         'console_scripts': ['metlink-status = metlink_status.cli:main']
     },
     install_requires=[
-        'colorama',
-        'requests',
-        'beautifulsoup4',
-        'lxml'
+        'colorama>=0.4.3',
+        'requests>=2.23.0',
+        'beautifulsoup4>=4.9.0',
+        'lxml>=4.5.0'
     ],
     description='Python CLI application to check the Metlink Wellington service updates.',
     long_description=long_desc,
     long_description_content_type='text/markdown',
     author='Finn Greig',
     author_email='finn@greig.xyz',
-    url='https://github.com/finncodes/metlink-status'
+    url='https://github.com/finncodes/metlink-status',
+    python_requires='>=3.0',
+    classifiers=[
+        'Environment :: Console',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3'
+    ],
+    project_urls={
+        'Source': 'https://github.com/finncodes/metlink-status'
+    }
 )
