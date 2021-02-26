@@ -1,5 +1,6 @@
 from .service_update_type import *
 from colorama import Fore
+from datetime import datetime
 
 
 class ServiceUpdateRow:
@@ -42,3 +43,40 @@ class ServiceUpdateRow:
             string += f'{self.link}\n'
 
         return string
+
+
+class GTFSRTServiceUpdateItem:
+
+    def __init__(self, alert_json):
+        alert = alert_json["alert"]
+
+        self.start_time = str(datetime.fromtimestamp(alert["active_period"][0]["start"]))
+        self.end_time = str(datetime.fromtimestamp(alert["active_period"][0]["end"]))
+        self.cause = alert["cause"]
+        self.description = alert["description_text"]["translation"][0]["text"]
+        self.effect = alert["effect"]
+        self.header = alert["header_text"]["translation"][0]["text"]
+
+        self.route_ids = []
+        for entity in alert["informed_entity"]:
+            if "stop_id" in entity:
+                self.route_ids.append(entity["stop_id"])
+            elif "route_id" in entity:
+                if entity["route_type"] == 2:
+                    self.route_ids.append(entity["route_id"])
+                else:
+                    self.route_ids.append(str(int(entity["route_id"]) // 10))
+
+        self.severity_level = alert["severity_level"]
+        self.url = alert["url"]["translation"][0]["text"]
+
+        self.id = alert_json["id"]
+        self.timestamp = datetime.strptime(alert_json["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
+
+    def __str__(self):
+        text = f"From {self.start_time} until {self.end_time}\nCause: {self.cause}\nEffect: {self.effect}\nHeader: {self.header}\nDescription: {self.description}\nRoutes: {', '.join(self.route_ids)}\nSeverity: {self.severity_level}\n"
+
+        if self.url:
+            text += f"Link to more information: {self.url}\n"
+
+        return text

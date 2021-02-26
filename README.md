@@ -1,7 +1,7 @@
 # metlink-status
 CLI tool for checking Metlink Wellington service updates.
 
-![Example Output Screenshot](https://raw.githubusercontent.com/finncodes/metlink-status/master/docs/example_output.png "Example Output")
+![Example Output Screenshot](https://git.sr.ht/~finncodes/metlink-status/blob/master/docs/example_output.png)
 
 ## Installation
 ```shell script
