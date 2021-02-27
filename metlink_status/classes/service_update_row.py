@@ -1,6 +1,7 @@
 from .service_update_type import *
 from colorama import Fore
 from datetime import datetime
+from ..parser import parse_informed_entity
 
 
 class ServiceUpdateRow:
@@ -62,10 +63,7 @@ class GTFSRTServiceUpdateItem:
             if "stop_id" in entity:
                 self.route_ids.append(entity["stop_id"])
             elif "route_id" in entity:
-                if entity["route_type"] == 2:
-                    self.route_ids.append(entity["route_id"])
-                else:
-                    self.route_ids.append(str(int(entity["route_id"]) // 10))
+                self.route_ids.append(parse_informed_entity(entity))
 
         self.severity_level = alert["severity_level"]
         self.url = alert["url"]["translation"][0]["text"]
@@ -74,7 +72,7 @@ class GTFSRTServiceUpdateItem:
         self.timestamp = datetime.strptime(alert_json["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
 
     def __str__(self):
-        text = f"From {self.start_time} until {self.end_time}\nCause: {self.cause}\nEffect: {self.effect}\nHeader: {self.header}\nDescription: {self.description}\nRoutes: {', '.join(self.route_ids)}\nSeverity: {self.severity_level}\n"
+        text = f"From {self.start_time} until {self.end_time}\nCause: {self.cause}\nEffect: {self.effect}\nHeader: {self.header}\nDescription: {self.description}\nRoutes: {', '.join([str(rid) for rid in self.route_ids])}\nSeverity: {self.severity_level}\n"
 
         if self.url:
             text += f"Link to more information: {self.url}\n"
