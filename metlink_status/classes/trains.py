@@ -15,11 +15,11 @@ class Trains(Enum):
         elif rid == "3":
             return Trains.MEL
         elif rid == "4":
-            return Trains.JVL
-        elif rid == "5":
             return Trains.WRL
-        elif rid == "6":
+        elif rid == "5":
             return Trains.HVL
+        elif rid == "6":
+            return Trains.JVL
         else:
             print("Got unknown route ID " + rid, type(rid))
             raise NotImplementedError
