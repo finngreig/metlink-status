@@ -73,6 +73,12 @@ class GTFSRTServiceUpdateItem:
         self.id = alert_json["id"]
         self.timestamp = datetime.strptime(alert_json["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
 
+    def is_service_affected(self, service):
+        if service.upper() in [str(rid) for rid in self.route_ids]:
+            return True
+        else:
+            return False
+
     def __str__(self):
         text = ""
 

@@ -31,4 +31,7 @@ class GTFSRTServiceUpdateList:
         self.items = [GTFSRTServiceUpdateItem(alert_json) for alert_json in response["entity"]]
 
     def get_items(self, user_service=None):
-        return self.items
+        if user_service:
+            return [str(service) for service in self.items if service.is_service_affected(user_service)]
+        else:
+            return self.items

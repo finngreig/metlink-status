@@ -13,9 +13,9 @@ class Trains(Enum):
         if rid == "2":
             return Trains.KPL
         elif rid == "3":
-            return Trains.JVL
-        elif rid == "4":
             return Trains.MEL
+        elif rid == "4":
+            return Trains.JVL
         elif rid == "5":
             return Trains.WRL
         elif rid == "6":
