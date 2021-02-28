@@ -1,5 +1,5 @@
-from ..classes.trains import Trains
-from ..classes.other import Ferries, CableCar
+from ..service_alerts.trains import Trains
+from ..service_alerts.other import Ferries, CableCar
 
 
 def bus(informed_entity):
