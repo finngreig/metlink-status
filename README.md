@@ -1,9 +1,16 @@
 # metlink-status
-CLI tool for checking Metlink Wellington service updates.
+Python 3 CLI tool for checking Metlink Wellington service updates.
 
 ![Example Output Screenshot](https://git.sr.ht/~finncodes/metlink-status/blob/master/docs/example_output.png)
 
 ## Installation
+
+From PyPI:
+```shell script
+pip install metlink-status
+```
+
+From source:
 ```shell script
 python setup.py install
 ```
