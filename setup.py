@@ -23,7 +23,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Finn Greig',
     author_email='finn@greig.xyz',
-    url='https://github.com/finncodes/metlink-status',
+    url='https://git.sr.ht/~finncodes/metlink-status',
     python_requires='>=3.0',
     classifiers=[
         'Environment :: Console',
@@ -32,6 +32,6 @@ setup(
         'Programming Language :: Python :: 3'
     ],
     project_urls={
-        'Source': 'https://github.com/finncodes/metlink-status'
+        'Source': 'https://git.sr.ht/~finncodes/metlink-status'
     }
 )
