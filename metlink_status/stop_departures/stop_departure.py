@@ -14,11 +14,11 @@ def parse_delay(delay):
 class StopDeparture:
 
     def __init__(self, json_obj):
-        if json_obj["arrival"]["expected"] != "":
+        if json_obj["arrival"]["expected"] != "" and json_obj["arrival"]["expected"] is not None:
             self.time = json_obj["arrival"]["expected"]
-        elif json_obj["arrival"]["aimed"] != "":
+        elif "aimed" in json_obj["arrival"].keys() and json_obj["arrival"]["aimed"] != "" and json_obj["arrival"]["aimed"] is not None:
             self.time = json_obj["arrival"]["aimed"]
-        elif json_obj["departure"]["expected"]:
+        elif json_obj["departure"]["expected"] != "" and json_obj["departure"]["expected"] is not None:
             self.time = json_obj["departure"]["expected"]
         else:
             self.time = json_obj["departure"]["aimed"]

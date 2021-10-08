@@ -9,7 +9,7 @@ def get_homepage():
 
 
 def get_opendata_api_key():
-    soup = BeautifulSoup(get_homepage(), 'lxml')
+    soup = BeautifulSoup(get_homepage(), 'html.parser')
     body = soup.find('body')
     app_settings = json.loads(body['data-app-settings'])
 
