@@ -1,7 +1,8 @@
 from argparse import ArgumentParser
 from colorama import init as colorama_init
+from .helpers import APIHelper
 from .service_alerts import GTFSRTServiceUpdateList
-from.stop_departures import StopDepartureList
+from .stop_departures import StopDepartureList
 
 
 def print_list(update_list, service=None):
@@ -27,7 +28,9 @@ def main():
     argument_parser.add_argument('-s', '--stop', type=str, help="Specifies a stop or station")
     args = argument_parser.parse_args()
 
-    update_list = GTFSRTServiceUpdateList()
+    api_helper = APIHelper()
+
+    update_list = GTFSRTServiceUpdateList(api_helper)
     update_list.get_service_alerts()
 
     if args.bus:
@@ -38,7 +41,7 @@ def main():
         print_list(update_list)
 
     if args.stop:
-        departure_list = StopDepartureList(args.stop)
+        departure_list = StopDepartureList(api_helper, args.stop)
         departure_list.get_departures()
 
         if args.bus and args.train:
