@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class Cause(Enum):
+    """
+    Convenience enum for GTFS-RT delay/cancellation causes
+    """
+
     UNKNOWN_CAUSE = "Unknown"
     OTHER_CAUSE = "Other"
     TECHNICAL_PROBLEM = "Technical Problem"

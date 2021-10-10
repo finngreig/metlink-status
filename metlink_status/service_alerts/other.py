@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class Ferries(Enum):
+    """
+    Convenience enum for ferry routes
+    """
+
     WHF = "WHF"
 
     @staticmethod
@@ -16,6 +20,10 @@ class Ferries(Enum):
 
 
 class CableCar(Enum):
+    """
+    Convenience enum for cable car route
+    """
+
     CCL = "CCL"
 
     @staticmethod

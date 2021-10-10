@@ -3,6 +3,14 @@ from ..service_alerts.other import Ferries, CableCar
 
 
 def bus(informed_entity):
+    """Decodes informed entity objects for buses and returns a human-readable route name
+
+    Args:
+        informed_entity (dict): The informed entity object returned by the API for a bus route
+
+    Returns:
+        str: The route ID
+    """
     route_id = informed_entity["route_id"]
 
     # handle night buses
@@ -22,14 +30,38 @@ def bus(informed_entity):
 
 
 def train(informed_entity):
+    """Decodes informed entity objects for trains and returns a human-readable route enum
+
+    Args:
+        informed_entity (dict): The informed entity object returned by the API for a train route
+
+    Returns:
+        enum: The route ID
+    """
     return Trains.from_route_id(informed_entity["route_id"])
 
 
 def ferry(informed_entity):
+    """Decodes informed entity objects for ferries and returns a human-readable route enum
+
+    Args:
+        informed_entity (dict): The informed entity object returned by the API for a ferry route
+
+    Returns:
+        enum: The route ID
+    """
     return Ferries.from_route_id(informed_entity["route_id"])
 
 
 def cable_car(informed_entity):
+    """Decodes informed entity objects for the cable car and returns a human-readable route enum
+
+    Args:
+        informed_entity (dict): The informed entity object returned by the API for the cable car
+
+    Returns:
+        enum: The route ID
+    """
     return CableCar.from_route_id(informed_entity["route_id"])
 
 
@@ -44,6 +76,14 @@ def cable_car(informed_entity):
 #     other: [4, 5]
 # }
 def parse_informed_entity(informed_entity):
+    """Picks a function to use to decode the informed entity's route ID based on integer route type
+
+    Args:
+        informed_entity: The informed entity object returned by the API
+
+    Returns:
+        enum|str: The route ID
+    """
     if "route_id" in informed_entity:
         if informed_entity["route_type"] in (0, 1, 2):
             return train(informed_entity)

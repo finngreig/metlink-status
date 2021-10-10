@@ -2,6 +2,10 @@ from enum import Enum
 
 
 class Effect(Enum):
+    """
+    Convenience enum for GTFS-RT delay/cancellation effects
+    """
+
     NO_SERVICE = "No Service"
     REDUCED_SERVICE = "Reduced Service"
     SIGNIFICANT_DELAYS = "Significant Delays"
