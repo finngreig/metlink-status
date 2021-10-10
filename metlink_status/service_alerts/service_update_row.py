@@ -5,8 +5,16 @@ from ..gtfs_rt import Cause, Effect
 
 
 class GTFSRTServiceUpdateItem:
-
+    """
+    Class that unpacks and provides convenience functions for a service alert from the GTFS-RT service
+    """
     def __init__(self, alert_json):
+        """
+        Constructor - unpacks a dict of an alert which has come from the GTFS-RT REST server
+
+        Args:
+            alert_json (dict): The JSON of the alert
+        """
         alert = alert_json["alert"]
 
         self.start_time = str(datetime.fromtimestamp(alert["active_period"][0]["start"]))
@@ -31,12 +39,26 @@ class GTFSRTServiceUpdateItem:
         self.timestamp = datetime.strptime(alert_json["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
 
     def is_service_affected(self, service):
+        """Checks if a route ID of a service is in the list of affected routes
+
+        Args:
+            service (str): The service's route ID
+
+        Returns:
+            bool: True if affected, False if not
+        """
         if service.upper() in [str(rid).upper() for rid in self.route_ids]:
             return True
         else:
             return False
 
     def __str__(self):
+        """String representation function
+
+        Returns:
+            str: String formatted and colored, ready for CLI display
+        """
+
         text = ""
 
         if self.severity_level == "SEVERE":

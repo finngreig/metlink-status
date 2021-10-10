@@ -2,6 +2,13 @@ from datetime import datetime
 
 
 def parse_delay(delay):
+    """Parses delay strings - strips non-numerics and converts from str to int
+    Args:
+        delay (str): The delay in str format
+
+    Returns:
+        int: The delay value
+    """
     number_str_array = [c for c in delay if c.isdigit()]
     number = int(''.join(number_str_array))
 
@@ -12,8 +19,16 @@ def parse_delay(delay):
 
 
 class StopDeparture:
+    """
+    Class that unpacks and provides convenience functions for a stop departure from Metlink's API
+    """
 
     def __init__(self, json_obj):
+        """Constructor - unpacks a dict of a stop departure which has come from Metlink's API
+
+        Args:
+            json_obj (dict): The JSON of the stop departure
+        """
         if json_obj["arrival"]["expected"] != "" and json_obj["arrival"]["expected"] is not None:
             self.time = json_obj["arrival"]["expected"]
         elif "aimed" in json_obj["arrival"].keys() and json_obj["arrival"]["aimed"] != "" and json_obj["arrival"]["aimed"] is not None:
@@ -36,6 +51,11 @@ class StopDeparture:
         self.wheelchair_accessible = json_obj["wheelchair_accessible"]
 
     def __str__(self):
+        """String representation function
+
+        Returns:
+            str: String formatted, ready for CLI display
+        """
         text = (f"Time: {self.time}\n"
                 f"Difference: {self.delay}s\n"
                 f"Destination: {self.destination} - {self.destination_stop_id}\n"
