@@ -1,6 +1,6 @@
 import requests
 from ..parser import get_opendata_api_key
-from .stop_departure import StopDeparture
+from .stop_departure_row import StopDeparture
 
 
 class StopDepartureList:

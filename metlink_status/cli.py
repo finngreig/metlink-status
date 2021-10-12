@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from colorama import init as colorama_init
-from .service_alerts import GTFSRTServiceUpdateList
+from .service_updates import GTFSRTServiceUpdateList
 from.stop_departures import StopDepartureList
 
 
