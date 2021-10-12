@@ -1,5 +1,5 @@
-from ..service_alerts.trains import Trains
-from ..service_alerts.other import Ferries, CableCar
+from metlink_status.service_updates.enums.trains import Trains
+from metlink_status.service_updates.enums.other import Ferries, CableCar
 
 
 def bus(informed_entity):

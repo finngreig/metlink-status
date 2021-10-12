@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from colorama import init as colorama_init
 from .helpers import APIHelper
-from .service_alerts import GTFSRTServiceUpdateList
+from .service_updates import GTFSRTServiceUpdateList
 from .stop_departures import StopDepartureList
 from rich.console import Console
 from rich.table import Table
@@ -34,7 +34,7 @@ def print_list(update_list, service=None):
         for row in update_list.get_items(service):
             table.add_row(row.start_time, row.end_time, row.cause.value, row.effect.value, row.header, row.description,
                           row.severity_level, ', '.join(row.stop_ids), ', '.join([str(rid) for rid in row.route_ids]))
-                          # row.url)
+            # row.url)
     elif isinstance(update_list, StopDepartureList):
         table.add_column("Time")
         table.add_column("Delay")
@@ -46,7 +46,8 @@ def print_list(update_list, service=None):
         table.add_column("Vehicle ID")
 
         for row in update_list.get_items(service):
-            table.add_row(row.time.strftime("%m/%d/%Y, %H:%M:%S"), str(row.delay), f"{row.destination} - {row.destination_stop_id}",
+            table.add_row(row.time.strftime("%m/%d/%Y, %H:%M:%S"), str(row.delay),
+                          f"{row.destination} - {row.destination_stop_id}",
                           f"{row.origin} - {row.origin_stop_id}", str(row.service_id),
                           f"{'Yes' if row.wheelchair_accessible else 'No'}", row.status, str(row.vehicle_id))
 
@@ -57,7 +58,7 @@ def main():
     """Main function that parses CLI arguments and creates lists and prints them
     """
     colorama_init()
-    
+
     argument_parser = ArgumentParser(description='Prints Metlink service updates')
     argument_parser.add_argument('-b', '--bus', type=str, help="Specifies a bus route")
     argument_parser.add_argument('-t', '--train', type=str, help="Specifies a train line")
